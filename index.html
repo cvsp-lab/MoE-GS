@@ -35,6 +35,235 @@
   <script src="./static/js/event_handler.js"></script>
   <script src="./static/js/dics.original.js"></script>
 
+  <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif; /* Pretendard 폰트 적용 */
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+
+        #menu {
+            font: bold 16px "malgun gothic";
+            width: 450px;
+            height: 50px;
+            background: #e0dddd;
+            color: black;
+            line-height: 50px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #menu>ul>li {
+            float: left;
+            width: 140px;
+            position: relative;
+        }
+
+        #menu>ul>li>ul {
+            width: 130px;
+            display: none;
+            position: absolute;
+            font-size: 14px;
+            background: rgb(229, 243, 248);
+        }
+
+        #menu>ul>li:hover>ul {
+            display: block;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 1000px;
+            margin: auto;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        
+        .ai {
+            font-family: 'Academicons';
+            font-weight: 400;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+        }
+        .ai-arxiv:before {
+            content: "\e974";
+        }
+        .video-slide {
+            display: none;
+            align-items: center;
+        }
+        
+        .video-slide.active {
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        
+        .is-dark {
+            color: white; /* 흰색으로 변경 */
+            text-decoration: none; /* 필요하다면 밑줄 제거 */
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 3px 3px 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Flexbox 추가 */
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .flex-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .top-banner-image {
+            width: 100%;
+            height: auto;
+        }
+        .ai-arxiv{
+            content: "\e974";
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .custom-link {
+            color: hsl(204, 86%, 53%); /* 밝은 청색 */
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+        .content-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .media-element {
+            width: 50%;
+            height: auto;
+        }
+        .custom-size {
+            width: 49%; /* 원하는 크기로 조절 */
+            height: auto; /* 이미지의 비율을 유지 */
+        }   
+        
+        .wide-video {
+            width: 1000px; /* 가로 길이 1000px */
+            height: auto; /* 비율 유지 */
+            display: block;
+            margin: 20px auto; /* 센터 정렬을 위해 추가 */
+        }
+
+        /* 첨자 크기 줄이기 */
+        sup {
+            font-size: 0.7em;
+	    font: "Times New Roman"
+        }
+
+	.button-container {
+	    text-align: center;
+	    margin-top: 15px;
+	}
+	
+	.icon-button {
+	    display: inline-flex;
+	    align-items: center;
+	    justify-content: center;
+	    background-color: #f5f5f5;
+	    color: black;
+	    text-decoration: none;
+	    font-size: 16px;
+	    font-family: 'Pretendard', sans-serif;
+	    padding: 10px 20px;
+	    margin: 5px;
+	    border-radius: 15px;
+	    border: 1px solid #ccc;
+	    transition: background-color 0.3s, transform 0.2s;
+	    text-align: center;
+	}
+	
+	.icon-button .icon {
+	    margin-right: 8px;
+	    font-size: 1em;
+	}
+	
+	.icon-button:hover {
+	    background-color: #ddd;
+	    transform: scale(1.05);  
+	}
+    .ai-arxiv:before {
+    content: "\e974";
+    }
+    .ai {
+    font-family: 'Academicons';
+    font-weight: 400;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    }
+    .publication-title {
+    font-family: 'Google Sans', sans-serif;
+    }
+    .title.is-1 {
+    font-size: 3rem;
+    }
+
+    </style>
+
 
 </head>
 
