@@ -130,22 +130,7 @@
           <h2 class="title is-3" style="margin-top: -30px">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Recent advances in dynamic scene reconstruction have significantly benefited from 3D Gaussian Splatting,
-              yet existing methods show inconsistent performance across diverse scenes, indicating no single approach
-              effectively handles all dynamic challenges. To overcome these limitations, we propose Mixture of Experts
-              for Dynamic Gaussian Splatting (MoE-GS), a unified framework integrating multiple specialized experts via
-              a novel Volume-aware Pixel Router. Unlike sparsity-oriented MoE architectures in large language models,
-              MoE-GS is designed to improve dynamic novel view synthesis quality by combining heterogeneous deformation
-              priors, rather than to reduce training or inference-time FLOPs. Our router adaptively blends expert
-              outputs by projecting volumetric Gaussian-level weights into pixel space through differentiable weight
-              splatting, ensuring spatially and temporally coherent results. Although MoE-GS improves rendering quality,
-              the increased model capacity and reduced FPS are inherent to the MoE architecture. To mitigate this, we
-              explore two complementary directions: (1) single-pass multi-expert rendering and gate-aware Gaussian
-              pruning, which improve efficiency within the MoE framework, and (2) a distillation strategy that transfers
-              MoE performance to individual experts, enabling lightweight deployment without architectural changes. To
-              the best of our knowledge, MoE-GS is the first approach incorporating Mixture-of-Experts techniques into
-              dynamic Gaussian splatting. Extensive experiments on the N3V and Technicolor datasets demonstrate that
-              MoE-GS consistently outperforms state-of-the-art methods with improved efficiency. </p>
+              Recent advances in dynamic scene reconstruction have significantly benefited from 3D Gaussian Splatting, yet existing methods show inconsistent performance across diverse scenes, indicating no single approach effectively handles all dynamic challenges. To overcome these limitations, we propose Mixture of Experts for Dynamic Gaussian Splatting (MoE-GS), a unified framework integrating multiple specialized experts via a novel Volume-aware Pixel Router. Unlike sparsity-oriented MoE architectures in large language models, MoE-GS is designed to improve dynamic novel view synthesis quality by combining heterogeneous deformation priors, rather than to reduce training or inference-time FLOPs. Our router adaptively blends expert outputs by projecting volumetric Gaussian-level weights into pixel space through differentiable weight splatting, ensuring spatially and temporally coherent results. Although MoE-GS improves rendering quality, the increased model capacity and reduced FPS are inherent to the MoE architecture. To mitigate this, we explore two complementary directions: (1) single-pass multi-expert rendering and gate-aware Gaussian pruning, which improve efficiency within the MoE framework, and (2) a distillation strategy that transfers MoE performance to individual experts, enabling lightweight deployment without architectural changes. To the best of our knowledge, MoE-GS is the first approach incorporating Mixture-of-Experts techniques into dynamic Gaussian splatting. Extensive experiments on the N3V and Technicolor datasets demonstrate that MoE-GS consistently outperforms state-of-the-art methods with improved efficiency.            </p>
           </div>
         </div>
       </div>
@@ -160,32 +145,28 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
           <h2 class="title is-3" style="margin-top: -20px">Method Overview</h2>
-          <br />
+          <br/>
+          <!-- <h2 class="title is-5 has-text-left" style="margin-top: -10px">Overview Framework of MoE-GS.</h2> -->
+
+          <!-- <img src="./static/resources/images/overframework.png" class="center" style="width: 100%; height: auto;"> -->
           <div class="content has-text-justified">
             <p style="margin-top: -10px">
-              MoE-GS follows a classic Mixture-of-Experts design to address dynamic scene reconstruction. In Stage 1
-              (Expert Training), each expert is independently trained to reconstruct dynamic scenes by learning its own
-              Gaussian representation. In Stage 2 (Router Training), expert parameters are frozen, and the Volume-aware
-              Pixel Router is optimized to compute adaptive spatial and temporal gating weights for blending expert
-              outputs.
-              The right shows candidate expert types—including HexPlane embedding-based, Per-Gaussian embedding-based,
-              reformulation-based, interpolation-based, and polynomial-based models—each capturing different dynamic
-              behaviors.
+              MoE-GS follows a classic Mixture-of-Experts design to address dynamic scene reconstruction. In Stage 1 (Expert Training), each expert is independently trained to reconstruct dynamic scenes by learning its own Gaussian representation. In Stage 2 (Router Training), expert parameters are frozen, and the Volume-aware Pixel Router is optimized to compute adaptive spatial and temporal gating weights for blending expert outputs.
+              The right shows candidate expert types—including HexPlane embedding-based, Per-Gaussian embedding-based, reformulation-based, interpolation-based, and polynomial-based models—each capturing different dynamic behaviors.
             </p>
             <img src="./static/resources/images/overframework.png" class="center" style="width: 100%; height: auto;">
           </div>
-
-          <br />
+          
+          <br/>
           <h2 class="title is-5 has-text-left" style="margin-top: 30px">Volume-aware Pixel Router.</h2>
+
           <div class="content has-text-justified">
+
             <p style="margin-top: -10px">
-              We introduce the Volume-aware Pixel Router, which overcomes the limitations of naive pixel-level
-              (top-left) and unstable 3D-level routing (bottom-left) by combining learnable per-Gaussian weights,
-              volumetric attributes, and rasterization-based weight splatting. This enables temporally and
-              view-consistent, volumetrically informed, and stably optimized expert blending.
+              We introduce the Volume-aware Pixel Router, which overcomes the limitations of naive pixel-level (top-left) and unstable 3D-level routing (bottom-left) by combining learnable per-Gaussian weights, volumetric attributes, and rasterization-based weight splatting. This enables temporally and view-consistent, volumetrically informed, and stably optimized expert blending.
             </p>
-            <img src="./static/resources/images/Router.png" class="center"
-              style="width: 100%; height: auto; margin-top: 10px;">
+
+          <img src="./static/resources/images/Router.png" class="center" style="width: 100%; height: auto; margin-top: 10px;">
           </div>
           <hr>
 
@@ -195,18 +176,17 @@
 
     </div>
   </section>
-
   <section class="section">
     <div class="container is-max-desktop">
 
       <div class="columns is-centered has-text-centered">
-        <div class="column is-full-width">
+        <div class="container is-max-desktop">
 
           <h2 class="title is-3" style="margin-top: -20px">Analysis</h2>
-          <br />
+          <br/>
 
           <section id="analysis" class="hero is-small">
-            <div class="hero-body" style="padding-bottom: 0px;">
+            <div class="hero-body" style="padding-bottom: 0px;"> 
               <div class="container is-max-desktop">
 
                 <h2 class="title is-5 has-text-left" style="margin-top: -20px;">
@@ -217,35 +197,41 @@
                   <ul>
                     <li>
                       <b>4DGS (HexPlane canonical deformation).</b><br>
-                      Shared HexPlane field enforces strong spatial regularization, producing smooth, low-variation
-                      motion ideal for static or slow-moving regions.
+                      Shared HexPlane field enforces strong spatial regularization, producing smooth, low-variation motion ideal for static or slow-moving regions.
                     </li>
 
                     <li>
                       <b>E-D3DGS (Per-Gaussian volumetric MLP prior).</b><br>
-                      E-D3DGS exhibits a different type of specialization.
-                      (i) Slow/fast factorized deformation + embedding regularizer yields fast, coherent, high-velocity
-                      motion with strong local alignment.
+                      E-D3DGS exhibits a different type of specialization.  
+                      (i) Slow/fast factorized deformation + embedding regularizer yields fast, coherent, high-velocity motion with strong local alignment.    
                     </li>
 
                     <li>
                       <b>STG (Low-order polynomial motion prior).</b><br>
-                      Polynomial trajectories induce globally smooth, low-curvature motion suited for rigid or
-                      near-rigid dynamics.
+                      Polynomial trajectories induce globally smooth, low-curvature motion suited for rigid or near-rigid dynamics.
                     </li>
 
                     <li>
                       <b>Ex4DGS (Independent keyframe interpolation prior).</b><br>
-                      Per-Gaussian keyframe interpolation creates flexible but diverse, multi-directional motion
-                      effective for irregular or abrupt changes.
+                      Per-Gaussian keyframe interpolation creates flexible but diverse, multi-directional motion effective for irregular or abrupt changes.
                     </li>
                   </ul>
                 </div>
 
 
                 <div style="width:100%;height:auto;aspect-ratio:16/9;margin-top:10px;">
-                  <video id="tree" width="100%" height="100%" autoplay muted loop playsinline preload="none"
-                    loading="lazy" style="display:block; margin-bottom: 0;">
+                  <video
+                    id="tree"
+                    width="100%"
+                    height="100%"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    loading="lazy"
+                    style="display:block; margin-bottom: 0;"
+                  >
                     <source src="./static/resources/video/trajectory.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                   </video>
@@ -254,166 +240,153 @@
             </div>
           </section>
 
-          <section id="post-hoc" class="hero is-small">
-            <div class="hero-body" style="padding-bottom: 0px;">
+          <!-- <section id="post-hoc" class="hero is-small">
+            <div class="hero-body" style="padding-bottom: 0px;"> 
               <div class="container is-max-desktop"></div>
-              <h2 class="title is-5 has-text-left" style="margin-top: -20px">Gaussian-Level Interpretation: 3D
-                Responsibilities and Post-hoc Fusion.</h2>
-              <div class="content has-text-justified">
-                <p style="margin-top: -10px">
-                  We visualize the router-derived per-Gaussian responsibilities in 3D to reveal how MoE-GS allocates
-                  different deformation priors across space. These responsibilities reflect the geometry-aware routing
-                  field learned by the model, showing which experts dominate each region. By reweighting Gaussian
-                  opacities using these responsibilities, we construct a post-hoc fused Gaussian model that exhibits
-                  coherent 3D occupancy and improved structural consistency, explaining why the spiral-view renders
-                  appear cleaner and more stable.
-                </p>
-              </div>
-
-              <div style="width:100%;height:auto;aspect-ratio:16/9;margin-top:10px;">
-                <video id="tree" width="100%" height="100%" autoplay muted loop playsinline preload="none"
-                  loading="lazy" style="display:block;">
-                  <source src="./static/resources/video/3dweight.webm" type="video/webm">
-                  <source src="./static/resources/video/3dweight.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+                <h2 class="title is-5 has-text-left" style="margin-top: -20px">Gaussian-Level Interpretation: 3D Responsibilities and Post-hoc Fusion.</h2>
+                <div class="content has-text-justified">
+                  <p style="margin-top: -10px">
+                    We visualize the router-derived per-Gaussian responsibilities in 3D to reveal how MoE-GS allocates different deformation priors across space. These responsibilities reflect the geometry-aware routing field learned by the model, showing which experts dominate each region. By reweighting Gaussian opacities using these responsibilities, we construct a post-hoc fused Gaussian model that exhibits coherent 3D occupancy and improved structural consistency, explaining why the spiral-view renders appear cleaner and more stable.
+                  </p>
+                </div>
               </div>
             </div>
-        </div>
-  </section>
+          </section> -->
 
-  <section id="spiral" class="hero is-small">
-    <div class="hero-body" style="padding-bottom: 0px;">
-      <div class="container is-max-desktop">
-        <h2 class="title is-5 has-text-left" style="margin-top: 40px">
-          Qualitative Results of Spiral-View Visualization (RGB & Depth).
-        </h2>
-
-        <div class="content has-text-justified">
-          <p style="margin-top: -10px">
-            To evaluate how MoE-GS improves <b>3D geometric consistency</b>, we visualize spiral trajectories from all
-            experts by rendering both their RGB outputs and their corresponding depth maps. These expert-level spiral
-            and depth renderings reveal distinct geometric behaviors—such as inconsistent density, ghosting, or unstable
-            surfaces—originating from each deformation prior. By comparing them with the spiral-view rendering of the
-            <b>post-hoc fused Gaussian model</b> constructed using router-derived per-Gaussian responsibilities, we
-            observe that MoE-GS produces cleaner and more coherent 3D occupancy with significantly more stable geometry
-            across viewpoints. This experiment directly demonstrates that MoE-GS goes beyond 2D blending and achieves a
-            genuinely geometry-aware mixture of heterogeneous deformation priors.
-          </p>
-        </div>
-
-        <div class="hero-body">
-          <div class="container is-max-desktop">
-            <div class="container has-text-centered">
-
-              <div id="results-carousel" class="carousel results-carousel">
-
-                <div class="item item-set1">
-                  <figure>
-                    <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                      height="100%">
-                      <source src="./static/resources/video/coffee.webm" type="video/webm">
-                      <source src="./static/resources/video/coffee.mp4" type="video/mp4">
-                    </video>
-                  </figure>
+          <section id="spiral" class="hero is-small">
+            <div class="column is-12">
+            <div class="hero-body">
+          
+                <h2 class="title is-5 has-text-left" style="margin-top: 40px">
+                  Qualitative Results of Spiral-View Visualization (Depth).
+                </h2>
+          
+                <div class="content has-text-justified">
+                  <p style="margin-top: -10px">
+                    To evaluate how MoE-GS improves <b>3D geometric consistency</b>, we visualize spiral trajectories from all experts by rendering both their RGB outputs and their corresponding depth maps. These expert-level spiral and depth renderings reveal distinct geometric behaviors—such as inconsistent density, ghosting, or unstable surfaces—originating from each deformation prior. By comparing them with the spiral-view rendering of the <b>post-hoc fused Gaussian model</b> constructed using router-derived per-Gaussian responsibilities, we observe that MoE-GS produces cleaner and more coherent 3D occupancy with significantly more stable geometry across viewpoints. This experiment directly demonstrates that MoE-GS goes beyond 2D blending and achieves a genuinely geometry-aware mixture of heterogeneous deformation priors.
+                  </p>
                 </div>
 
-                <div class="item item-set2">
-                  <figure>
-                    <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                      height="100%">
-                      <source src="./static/resources/video/spinach.webm" type="video/webm">
-                      <source src="./static/resources/video/spinach.mp4" type="video/mp4">
-                    </video>
-                  </figure>
-                </div>
+                <div class="container has-text-centered">
+                  <div id="spiral-carousel" class="carousel results-carousel">
+          
+                    <div class="item item-set1">
+                      <div class="columns vertical_center">
+                        <div class="column is-one-thirds">
+                          <figure>
+                            <video autoplay controls muted loop playsinline preload="none" loading="lazy" style="width:100%; height:auto;">
+                              <!-- <source src="./static/resources/video/coffee.webm" type="video/webm"> -->
+                              <source src="./static/resources/video/coffee_depth.mp4" type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="item item-set2">
+                      <div class="columns vertical_center">
+                        <div class="column is-one-thirds">
+                          <figure>
+                            <video autoplay controls muted loop playsinline preload="none" loading="lazy" style="width:100%; height:auto;">
+                              <!-- <source src="./static/resources/video/spinach.webm" type="video/webm"> -->
+                              <source src="./static/resources/video/spinach_depth.mp4" type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="item item-set3">
+                      <div class="columns vertical_center">
+                        <div class="column is-one-thirds">
+                          <figure>
+                            <video autoplay controls muted loop playsinline preload="none" loading="lazy" style="width:100%; height:auto;">
+                              <!-- <source src="./static/resources/video/steak.webm" type="video/webm"> -->
+                              <source src="./static/resources/video/steak_depth.mp4" type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+          
+                  </div> <!-- carousel -->
+                </div> <!-- container -->
+          
+              </div> <!-- container is-max-desktop -->
+            </div> <!-- hero-body -->
+          </section>
 
-                <div class="item item-set3">
-                  <figure>
-                    <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                      height="100%">
-                      <source src="./static/resources/video/steak.webm" type="video/webm">
-                      <source src="./static/resources/video/steak.mp4" type="video/mp4">
-                    </video>
-                  </figure>
-                </div>
 
-              </div>
 
-            </div>
-          </div>
+
         </div>
+      </div>
+
+    </div>
   </section>
 
-
-  </div>
-  </div>
-
-  </div>
-  </section>
-
+  <!-- <section class="section" style="padding-top: 20px; padding-bottom: 20px;"> -->
   <section class="section">
     <div class="container is-max-desktop">
 
       <!-- Results -->
       <div class="columns is-centered">
+        <!-- <div class="column is-full-width"> -->
         <div class="column is-12"> <!-- instead of is-full-width -->
 
           <h2 class="title is-3 has-text-centered" style="margin-bottom: 20px; margin-top: 10px;;">Results</h2>
-          <h2 class="title is-5 has-text-left" style="margin-top: 40px">Overview Video of Results.</h2>
-          <div class="content has-text-justified">
-            <p style="margin-top: -10px">
-              The following video provides a qualitative comparison between our MoE-GS framework and various baseline
-              methods.
-              It also includes visualizations of the routing weights used to generate the final MoE output, offering
-              insight into how MoE-GS adaptively blends expert predictions to reconstruct dynamic scenes.
-            </p>
-          </div>
+            <h2 class="title is-5 has-text-left" style="margin-top: 40px">Overview Video of Results.</h2>
+            <div class="content has-text-justified">
+              <p style="margin-top: -10px">
+                The following video provides a qualitative comparison between our MoE-GS framework and various baseline methods.
+                It also includes visualizations of the routing weights used to generate the final MoE output, offering insight into how MoE-GS adaptively blends expert predictions to reconstruct dynamic scenes.
+              </p>
+            </div>
 
           <div style="width:100%;height:auto;aspect-ratio:16/9;margin-top:10px;">
-            <iframe id="tree" width="100%" height="100%"
-              src="https://www.youtube.com/embed/Lhge0WVK5fk?autoplay=1&mute=1&playsinline=1"
-              title="YouTube video player" frameborder="0"
+            <iframe
+              id="tree"
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/la0wm5yEbD8?autoplay=1&mute=1&playsinline=1"
+              title="YouTube video player"
+              frameborder="0"
               allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen style="display:block;">
+              allowfullscreen
+              style="display:block;">
             </iframe>
           </div>
 
-          <br />
+          <br/>
           <h2 class="title is-5 has-text-left" style="margin-top: 30px">Comparison on MoE-GS.</h2>
-          <div class="content has-text-justified">
-            <p style="margin-top: -10px">
-              To evaluate the robustness of MoE-GS under diverse real-world deformations, we conduct experiments on two
-              multi-view dynamic scene datasets commonly used for dynamic scene reconstruction: Neural 3D Video
-              Synthesis (N3V) and the Technicolor dataset.
-              The following visual comparisons demonstrate that MoE-GS consistently outperforms existing methods by
-              achieving higher visual fidelity in dynamic scene reconstruction.
-              In particular, the zoomed-in video results show that MoE-GS effectively leverages the strengths of the
-              full expert set by adaptively selecting the best-performing regions, resulting in superior reconstruction
-              quality.
-            </p>
-          </div>
+            <div class="content has-text-justified">
+              <p style="margin-top: -10px">
+                To evaluate the robustness of MoE-GS under diverse real-world deformations, we conduct experiments on two multi-view dynamic scene datasets commonly used for dynamic scene reconstruction: Neural 3D Video Synthesis (N3V) and the Technicolor dataset.
+                The following visual comparisons demonstrate that MoE-GS consistently outperforms existing methods by achieving higher visual fidelity in dynamic scene reconstruction.
+                In particular, the zoomed-in video results show that MoE-GS effectively leverages the strengths of the full expert set by adaptively selecting the best-performing regions, resulting in superior reconstruction quality.
+              </p>
+            </div>
 
           <div class="container">
             <h4 class="subtitle has-text-centered" style="margin-bottom: 10px; margin-top: 50px;">
               MoE-GS on N3V Dataset (4 Experts)
             </h4>
             <ul class="nav nav-tabs nav-fill nav-justified" id="n3v-coffee" style="margin-bottom: 10px;">
-              <li class="nav-item">
-                <a class="nav-link active" onclick="coffeeSceneEvent(0)">4DGaussians</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="coffeeSceneEvent(1)">STG</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="coffeeSceneEvent(2)">Ex4DGS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="coffeeSceneEvent(3)">E-D3DGS</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link active" onclick="coffeeSceneEvent(0)">4DGaussians</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="coffeeSceneEvent(1)">STG</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="coffeeSceneEvent(2)">Ex4DGS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="coffeeSceneEvent(3)">E-D3DGS</a>
+                </li>
             </ul>
             <div class="b-dics" style="width: 1000px; font-weight: 600; margin-top: 10px;">
-              <image src="./static/resources/comp/n3v/4DGaussians/coffee_MoE.png" alt="MoE-GS (ours)">
+                <image src="./static/resources/comp/n3v/4DGaussians/coffee_MoE.png" alt="MoE-GS (ours)">
                 <image src="./static/resources/comp/n3v/4DGaussians/coffee.png" alt="Expert">
             </div>
           </div>
@@ -421,137 +394,140 @@
           <section class="hero is-small">
             <div class="hero-body">
               <div class="container is-max-desktop">
-                <div class="container has-text-centered">
-                  <div id="results-carousel" class="carousel results-carousel">
-
-                    <div class="item item-set1">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-thirds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/coffee_b1_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
+              <div class="container has-text-centered">
+                <div id="n3v-carousel" class="carousel results-carousel">
+                  
+                  <div class="item item-set1">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-thirds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy" height="100%">
+                              <source src="./static/resources/video/coffee_b1_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
                         </div>
                       </div>
                     </div>
-
-                    <div class="item item-set2">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-seconds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/coffee_b2_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="item item-set3">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-thirds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/coffee_b3_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
+          
+                  <div class="item item-set2">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-seconds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy" height="100%">
+                              <source src="./static/resources/video/coffee_b2_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+          
+                  <div class="item item-set3">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-thirds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy" height="100%">
+                              <source src="./static/resources/video/coffee_b3_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </div>
+          </div>
           </section>
 
           <div class="container">
             <h3 class="subtitle has-text-centered" style="margin-bottom: 2rem; margin-top: 2rem;">
               MoE-GS on Technicolor Dataset (3 Experts)
-              <ul class="nav nav-tabs nav-fill nav-justified" id="technicolor-theater"
-                style="margin-top: 10px;margin-bottom: 10px;">
-                <li class="nav-item">
-                  <a class="nav-link active" onclick="theaterSceneEvent(0)">STG</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="theaterSceneEvent(1)">Ex4DGS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="theaterSceneEvent(2)">E-D3DGS</a>
-                </li>
-              </ul>
-              <div class="b-dics" style="width: 1000px; font-weight: 600; margin-top: 10px;">
-                <image src="./static/resources/comp/technicolor/STG/theater_MoE.png" alt="MoE-GS (ours)">
-                  <image src="./static/resources/comp/technicolor/STG/theater.png" alt="Expert">
-              </div>
+            <!-- </h3>
+            <h4 class="subtitle has-text-centered" style="margin-bottom: 10px; margin-top: 2rem;">
+              Theater
+            </h4> -->
+            <ul class="nav nav-tabs nav-fill nav-justified" id="technicolor-theater" style="margin-top: 10px;margin-bottom: 10px;">
+              <li class="nav-item">
+                <a class="nav-link active" onclick="theaterSceneEvent(0)">STG</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="theaterSceneEvent(1)">Ex4DGS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="theaterSceneEvent(2)">E-D3DGS</a>
+              </li>
+            </ul>
+            <div class="b-dics" style="width: 1000px; font-weight: 600; margin-top: 10px;">
+              <image src="./static/resources/comp/technicolor/STG/theater_MoE.png" alt="MoE-GS (ours)">
+              <image src="./static/resources/comp/technicolor/STG/theater.png" alt="Expert">
+            </div>
           </div>
 
           <section class="hero is-small">
             <div class="hero-body">
-              <div class="container" style="max-width: 1000px; margin: 0 auto;">
-                <div class="container has-text-centered">
-                  <div id="results-carousel" class="carousel results-carousel">
-
-                    <div class="item item-set1">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-thirds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/theater_b1_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
+              <div class="container is-max-desktop">
+              <div class="container has-text-centered">
+                <div id="tech-carousel" class="carousel results-carousel">
+                  
+                  <div class="item item-set1 is-active">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-thirds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="auto" loading="lazy" style="width:100%; height:100%;">
+                              <source src="./static/resources/video/theater_b1_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
                         </div>
                       </div>
                     </div>
-
-                    <div class="item item-set2">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-seconds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/theater_b2_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="item item-set3">
-                      <div class="columns vertical_center">
-                        <div class="column is-one-thirds">
-                          <div class="column">
-                            <figure>
-                              <video poster="" autoplay controls muted loop playsinline preload="none" loading="lazy"
-                                height="100%">
-                                <source src="./static/resources/video/theater_b3_grid_video.mp4" type="video/mp4">
-                              </video>
-                            </figure>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
+
+                  <div class="item item-set2">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-seconds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="auto" loading="lazy" style="width:100%; height:100%;">
+                              <source src="./static/resources/video/theater_b2_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          
+                  <div class="item item-set3">
+                    <div class="columns vertical_center">
+                      <div class="column is-one-thirds">
+                        <div class="column">
+                          <figure>
+                            <video poster="" autoplay controls muted loop playsinline preload="auto" loading="lazy" style="width:100%; height:100%;">
+                              <source src="./static/resources/video/theater_b3_grid_video.mp4"
+                                      type="video/mp4">
+                            </video>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </div>
+          </div>
           </section>
 
           <hr>
@@ -564,45 +540,35 @@
     <div class="hero-body">
       <div class="container is-max-desktop">
         <h2 class="title is-5 has-text-left" style="margin-top: -10px">Comparison on Distillation.</h2>
-        <p style="margin-top: -10px">
-          To mitigate the high storage and inference costs of MoE-GS, we validate the effectiveness of our proposed
-          distillation strategy designed to address these issues. Specifically, we compare expert retraining with
-          ground-truth supervision against our distillation approach, which combines MoE images as pseudo ground truth
-          with actual ground-truth supervision.
-          The following videos compare the retraining results and distilled outputs for each algorithm, demonstrating
-          that our distillation strategy allows the expert models to approximate the performance of MoE-GS to a
-          significant extent.
-        </p>
+          <p style="margin-top: -10px">
+            To mitigate the high storage and inference costs of MoE-GS, we validate the effectiveness of our proposed distillation strategy designed to address these issues. Specifically, we compare expert retraining with ground-truth supervision against our distillation approach, which combines MoE images as pseudo ground truth with actual ground-truth supervision.
+            The following videos compare the retraining results and distilled outputs for each algorithm, demonstrating that our distillation strategy allows the expert models to approximate the performance of MoE-GS to a significant extent.
+          </p>
         <div class="columns is-centered has-text-centered">
 
           <div class="column">
-            </br>
+          </br>
+            <!-- <h2 class="title is-3">Distillation Results</h2> -->
             <h3 class="subtitle has-text-centered"> Ex4DGS / Ex4DGS (distilled)</h3>
           </div>
         </div>
 
         <div class="columns is-centered has-text-centered">
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias7_left" loop playsinline autoplay preload="none" loading="lazy"
-              muted src="./static/resources/video/distill/Ex4DGS/Birthday/Birthday1.webm" onplay="resizeAndPlay(this)"
-              style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias7_leftMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias7_left" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Birthday/Birthday1.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias7_leftMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Birthday
             </p>
 
           </div>
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias7_right" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Birthday/Birthday2.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias7_rightMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias7_right" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Birthday/Birthday2.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias7_rightMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Birthday
             </p>
@@ -610,65 +576,54 @@
           </div>
         </div>
         <div class="columns is-centered has-text-centered">
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias8_left" loop playsinline autoplay preload="none" loading="lazy"
-              muted src="./static/resources/video/distill/Ex4DGS/Fabien/Fabien1.webm" onplay="resizeAndPlay(this)"
-              style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias8_leftMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias8_left" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Fabien/Fabien1.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias8_leftMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Fabien
             </p>
 
           </div>
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias8_right" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Fabien/Fabien2.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias8_rightMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias8_right" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/Ex4DGS/Fabien/Fabien2.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias8_rightMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Fabien
             </p>
 
           </div>
         </div>
-
+        
 
         <div class="columns is-centered has-text-centered">
 
           <div class="column">
-            </br>
+          </br>
+            <!-- <h2 class="title is-3">Distillation Results</h2> -->
             <h3 class="subtitle has-text-centered"> STG / STG (distilled)</h3>
           </div>
         </div>
 
         <div class="columns is-centered has-text-centered">
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias10_left" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/STG/Birthday/Birthday_STG1.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias10_leftMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias10_left" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/STG/Birthday/Birthday_STG1.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias10_leftMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Birthday
             </p>
 
           </div>
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias10_right" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/STG/Birthday/Birthday_STG2.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias10_rightMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias10_right" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/STG/Birthday/Birthday_STG2.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias10_rightMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Birthday
             </p>
@@ -677,27 +632,21 @@
         </div>
 
         <div class="columns is-centered has-text-centered">
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias11_left" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/STG/Fabien/Fabien_STG1.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias11_leftMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias11_left" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/STG/Fabien/Fabien_STG1.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias11_leftMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Fabien
             </p>
 
           </div>
-
+          
           <div class="column is-half" style="padding: 10px;">
 
-            <video class="video" width="100%" id="xyalias11_right" loop playsinline autoplay preload="none"
-              loading="lazy" muted src="./static/resources/video/distill/STG/Fabien/Fabien_STG2.webm"
-              onplay="resizeAndPlay(this)" style="height: 400px;"></video>
-            <canvas height=400 class="videoMerge" id="xyalias11_rightMerge"
-              style="width: 100%; margin: 0 auto; display: block;"></canvas>
+            <video class="video" width="100%" id="xyalias11_right" loop playsinline autoplay preload="none" loading="lazy" muted src="./static/resources/video/distill/STG/Fabien/Fabien_STG2.webm" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+            <canvas height=400 class="videoMerge" id="xyalias11_rightMerge" style="width: 100%; margin: 0 auto; display: block;"></canvas>
             <p style="font-size: 1.0em; text-align: center; margin-top: 10px;">
               Fabien
             </p>
@@ -705,18 +654,18 @@
           </div>
         </div>
 
-
+       
       </div>
     </div>
   </section>
 
 
+      <!-- Method. -->
   <section class="section" style="padding-bottom: 20px;">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <h2 class="title is-5 has-text-left" style="margin-top: -10px">Reference.</h2>
-        <ul
-          style="margin-top: -10px; text-align: left; display: inline-block; list-style-type: disc; padding-left: 20px;">
+        <ul style="margin-top: -10px; text-align: left; display: inline-block; list-style-type: disc; padding-left: 20px;">
           <li>
             <a href="https://leejunoh.com/Ex4DGS/" target="_blank">
               Fully Explicit Dynamic Gaussian Splatting
@@ -743,34 +692,27 @@
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-      </div>
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-              This website is licensed under a <a rel="license"
-                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-                Commons Attribution-ShareAlike 4.0 International License</a>.
-              This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-              We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this
-              template.
-              The video comparison with sliding bar is from <a href="https://dorverbin.github.io/refnerf/">Ref-NeRF</a>.
-              The image comparison with sliding bar is from <a
-                href="https://research.nvidia.com/labs/dir/neuralangelo/">Neuralangelo</a>.
-            </p>
-          </div>
-        </div>
-        <p></p>
-      </div>
+  <div class="container">
+    <div class="content has-text-centered">
     </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template. 
+            The video comparison with sliding bar is from <a href="https://dorverbin.github.io/refnerf/">Ref-NeRF</a>. 
+            The image comparison with sliding bar is from <a href="https://research.nvidia.com/labs/dir/neuralangelo/">Neuralangelo</a>. 
+          </p>
+        </div>
+      </div>
+          <p></p>
+        </div>
+      </div>
 
-  </footer>
-
-
-
+</footer>
 
 </body>
-
 </html>
