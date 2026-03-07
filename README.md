@@ -24,7 +24,6 @@
 2. [Preprocess Datasets](#-Preprocess-Datasets)
 3. [Stage 1: Expert Training](#-Stage-1)
 4. [Stage 2: Router Training](#-Stage-2)
-5. [Lightfield Rendering](#-Lightfield-Rendering)
 
 <br><br>
 
