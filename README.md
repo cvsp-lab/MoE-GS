@@ -12,11 +12,11 @@
   <a href="https://www.pnu-cvsp.com/prof"><strong>Kyeongbo Kong</strong></a>
   <br>
 </p>
-<div align='center'>
+<!-- <div align='center'>
   <br><img src="main.mp4" width=70%>
   <br><b>Summary</b>: Unified <b>Mixture-of-Experts</b> framework for dynamic Gaussian Splatting with a
               <b>volume-aware pixel router</b> for adaptive expert blending.
-</div>
+</div> -->
 
 ## Contents
 
