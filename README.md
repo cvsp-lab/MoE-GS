@@ -1,15 +1,11 @@
 
 <div align="center">
-<h2>MoE-GS: Mixture of Experts for Dynamic Gaussian Splatting </h2>
-<h3 style="font-size:1.5em; margin-top: 15px;">
-    <strong style="letter-spacing: -0.5px">
-    ICLR 2026
-    </strong>
-</h3>
-<a href="https://arxiv.org/abs/2510.19210"><img src="https://img.shields.io/badge/arXiv-2510.19210-b31b1b" alt="arXiv"></a>
-<a href="https://paper.pnu-cvsp.com/MoE-GS/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
+  <h2>MoE-GS: Mixture of Experts for Dynamic Gaussian Splatting </h2>
+  <h3 style="font-size:1.5em; margin-top: 15px;"><strong style="letter-spacing: -0.5px">ICLR 2026</strong></h3>
+  <a href="https://arxiv.org/abs/2510.19210"><img src="https://img.shields.io/badge/arXiv-2510.19210-b31b1b" alt="arXiv"></a>
+  <a href="https://paper.pnu-cvsp.com/MoE-GS/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
 
-<p>
+  <p>
     <a href="https://www.pnu-cvsp.com/members/inhwan"><strong>In-Hwan Jin</strong></a><sup style="margin-right: -3px;">1*</sup>
     ·  
     <a href="https://www.pnu-cvsp.com/members/hyeong-ju"><strong>Hyeongju Mun</strong></a><sup style="margin-right: -3px;">1*</sup>
@@ -19,13 +15,17 @@
     <strong>Kugjin Yun</strong><sup style="margin-right: -3px;">2</sup>
     ·  
     <a href="https://www.pnu-cvsp.com/prof"><strong>Kyeongbo Kong</strong></a><sup style="margin-right: -3px;">1†</sup>
-    <br><sup style="margin-right: -3px;">1</sup> Pusan National University  <sup style="margin-left: 5px; margin-right: -3px;">2</sup> ETRI 
-    <br><sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>†</sup> Corresponding author
-</p>
+    <br>
+    <sup style="margin-right: -3px;">1</sup> Pusan National University  <sup style="margin-left: 5px; margin-right: -3px;">2</sup> Electronics and Telecommunications Research Institute 
+    <br>
+    <sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>†</sup> Corresponding author
+  </p>
 
-  <br><img src="main.gif" width=70%>
-  <br><b>Summary</b>: Unified <b>Mixture-of-Experts</b> framework for dynamic Gaussian Splatting with a
-              <b>volume-aware pixel router</b> for adaptive expert blending.
+  <br>
+  <img src="main.gif" width=70%>
+  <br>
+  <b>Summary</b>: Unified <b>Mixture-of-Experts</b> framework for dynamic Gaussian Splatting with a
+            <b>volume-aware pixel router</b> for adaptive expert blending.
 </div>
 
 
