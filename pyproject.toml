@@ -1,0 +1,31 @@
+[project]
+name = "moe-gs"
+version = "0.1.0"
+description = "Mixture of Experts for Gaussian Splatting"
+requires-python = ">=3.9,<3.12"
+dependencies = [
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+    "torchaudio>=2.1.0",
+    "numpy>=1.24,<2.0",
+    "joblib",
+    "tqdm",
+    "natsort",
+    "opencv-python",
+    "kornia",
+    "scipy",
+    "scikit-image",
+    "omegaconf",
+    "imageio[ffmpeg]>=2.31",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.uv]
+# PyTorch CUDA 11.8 wheels
+extra-index-url = ["https://download.pytorch.org/whl/cu118"]
+
+[tool.uv.sources]
+# Third-party CUDA extensions must be built separately after env setup.
+# See THIRDPARTY_RECOVERY.md for instructions.
