@@ -1,23 +1,38 @@
 
-<h2 align="center">MoE-GS: Mixture of Experts for Dynamic Gaussian Splatting </h2>
-<p align="center">
-  <a href="https://www.pnu-cvsp.com/members/inhwan"><strong>In-Hwan Jin</strong></a>
-  ·  
-  <a href="https://www.pnu-cvsp.com/members/hyeong-ju"><strong>Hyeongju Mun</strong></a>
-  ·  
-  <strong>Joonsoo Kim</strong></a>
-  ·    
-  <strong>Kugjin Yun</strong>
-  ·  
-  <a href="https://www.pnu-cvsp.com/prof"><strong>Kyeongbo Kong</strong></a>
-  <br>
+<div align="center">
+<h2>MoE-GS: Mixture of Experts for Dynamic Gaussian Splatting </h2>
+<p style="font-size:1.5em; margin-top: 15px;">
+    <strong style="letter-spacing: -0.5px">
+    ICLR 2026
+    </strong>
 </p>
 
-<div align='center'>
+<a href="https://arxiv.org/abs/2510.19210"><img src="https://img.shields.io/badge/arXiv-2510.19210-b31b1b" alt="arXiv"></a>
+<a href="https://paper.pnu-cvsp.com/MoE-GS/"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
+<p>
+  <a href="https://www.pnu-cvsp.com/members/inhwan"><strong>In-Hwan Jin</strong></a><sup style="margin-right: -3px;">1*</sup>
+  ·  
+  <a href="https://www.pnu-cvsp.com/members/hyeong-ju"><strong>Hyeongju Mun</strong></a><sup style="margin-right: -3px;">1*</sup>
+  ·  
+  <strong>Joonsoo Kim</strong><sup style="margin-right: -3px;">2</sup>
+  ·    
+  <strong>Kugjin Yun</strong><sup style="margin-right: -3px;">2</sup>
+  ·  
+  <a href="https://www.pnu-cvsp.com/prof"><strong>Kyeongbo Kong</strong></a><sup style="margin-right: -3px;">1†</sup>
+</p>
+<p style="font-size:1.1em; margin-top: -15px;">
+    <sup style="margin-right: -3px;">1</sup> Pusan National University 
+    <sup style="margin-left: 5px; margin-right: -3px;">2</sup> ETRI 
+</p>
+<p style="color:gray; font-size:0.8em; margin-top: -15px;">
+    <sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>†</sup> Corresponding author
+</p>
+
   <br><img src="main.gif" width=70%>
   <br><b>Summary</b>: Unified <b>Mixture-of-Experts</b> framework for dynamic Gaussian Splatting with a
               <b>volume-aware pixel router</b> for adaptive expert blending.
 </div>
+
 
 ## Contents
 
@@ -25,6 +40,7 @@
 2. [Preprocess Datasets](#-Preprocess-Datasets)
 3. [Stage 1: Expert Training](#-Stage-1)
 4. [Stage 2: Router Training](#-Stage-2)
+5. [BibTeX](#bibtex)
 
 <br><br>
 
@@ -96,7 +112,7 @@ The pretrained **STG** models are organized as follows:
 |   |---<scene>_150to299/
 ```
 
-<br><br>
+<br>
 
 ## Stage 2: Router Training
 
@@ -119,11 +135,9 @@ python train_E3.py --config "configs/N3V/<scene>.json" \
     --emb_path <path to E-D3DGS model>/<scene> \
     --fgaussian_path <path to 4DGaussians model>/<scene> \
     --save_path <path to save model>
-
 ```
 
 You can render MoE-GS(n=3,4) by running the following command:
-
 ```
 
 python render_E4.py --skip_train \
@@ -135,7 +149,6 @@ python render_E3.py --skip_train \
     --source_path <location>/<scene> \
     --save_path <path to save model> \
     --iteration <2000|5000>
-
 ```
 
 ### Technicolor Dataset
@@ -149,7 +162,6 @@ python train_E3_tech.py --config "configs/techni/<scene>.json" \
     --emb_path <path to E-D3DGS model>/<scene> \
     --stg_path <path to STG model>/<scene> \
     --save_path <path to save model>
-
 ```
 
 You can render MoE-GS(n=3) by running the following command:
@@ -159,11 +171,20 @@ python render_E3_tech.py --skip_train \
     --source_path <location>/<scene> \
     --save_path <path to save model> \
     --iteration <2000|5000>
-
 ```
-
-<br><br>
 
 **Options:**
 - `--y_offset` Vertical offset for viewpoint shifting (used for N3V).  
 - `--focal_mm` Camera focal length in millimeters (used for Technicolor).
+
+<br>
+
+## BibTeX
+```bibtex
+@inproceedings{jinmoe,
+    title={MoE-{GS}: Mixture of Experts for Dynamic Gaussian Splatting},
+    author={In-Hwan Jin and Hyeongju Mun and Joonsoo Kim and Kugjin Yun and Kyeongbo Kong},
+    booktitle={The Fourteenth International Conference on Learning Representations},
+    year={2026},
+}
+```
