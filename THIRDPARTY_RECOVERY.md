@@ -2,10 +2,6 @@
 
 This project depends on several external open-source components that are not included in this repository.
 Follow the instructions below to restore them before building or running the code.
-```bash
-# Quick Start: Just for download thirdparty. See Also 'Building CUDA Extensions'
-bash thirdparty/thirdparty_recovery.sh
-```
 
 ## `thirdparty/`
 
@@ -104,4 +100,8 @@ git clone https://github.com/g-truc/glm.git
 #   thirdparty/reparmetrize/Fdiff_gaussian_rasterization/third_party/glm
 #   thirdparty/weight/gaussian_rasterization_ch3/third_party/glm
 #   submodules/diff_gaussian_rasterization_df/third_party/glm
+```
+
+```shell
+bash thirdparty/glm_download.sh
 ```

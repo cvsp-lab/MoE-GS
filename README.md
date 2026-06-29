@@ -41,6 +41,11 @@
 
 ## Setup
 
+### Download Repository and Thirdparty Modules
+```shell
+git clone https://github.com/cvsp-lab/MoE-GS.git
+```
+
 ### Environment Setup
 Installation through pip is recommended. First, set up your Python environment:
 ```shell
