@@ -2,8 +2,12 @@
 
 This project depends on several external open-source components that are not included in this repository.
 Follow the instructions below to restore them before building or running the code.
+```bash
+# Quick Start: Just for download thirdparty. See Also 'Building CUDA Extensions'
+bash thirdparty/thirdparty_recovery.sh
+```
 
-## thirdparty/
+## `thirdparty/`
 
 ### embedding (E-D3DGS)
 ```bash
@@ -52,7 +56,7 @@ cp -r /tmp/4DGaussians/submodules/depth-diff-gaussian-rasterization thirdparty/H
 #       Restore from project backup if available.
 ```
 
-## submodules/
+## `submodules/`
 
 ### diff_gaussian_rasterization_df
 ```bash
@@ -76,7 +80,7 @@ pip install lpips
 # Or copy the lpipsPyTorch module from the PerceptualSimilarity repository.
 ```
 
-## Building CUDA Extensions
+# Building CUDA Extensions
 
 After restoring all dependencies, build the CUDA extensions:
 ```bash

@@ -115,7 +115,7 @@ The pretrained **STG** models are organized as follows:
 
 You can train MoE-GS(n=3,4) by running the following command:
 
-```
+```bash
 python train_E4.py --config "configs/N3V/<scene>.json" \
     --source_path <location>/<scene> \
     --model_path <path to Ex4DGS model>/<scene> \
@@ -133,8 +133,7 @@ python train_E3.py --config "configs/N3V/<scene>.json" \
 ```
 
 You can render MoE-GS(n=3,4) by running the following command:
-```
-
+```bash
 python render_E4.py --skip_train \
     --source_path <location>/<scene> \
     --save_path <path to save model> \
@@ -149,8 +148,7 @@ python render_E3.py --skip_train \
 ### Technicolor Dataset
 You can train MoE-GS(n=3) by running the following command:
 
-```
-
+```bash
 python train_E3_tech.py --config "configs/techni/<scene>.json" \
     --source_path <location>/<scene> \
     --model_path <path to Ex4DGS model>/<scene> \
@@ -161,7 +159,7 @@ python train_E3_tech.py --config "configs/techni/<scene>.json" \
 
 You can render MoE-GS(n=3) by running the following command:
 
-```
+```bash
 python render_E3_tech.py --skip_train \
     --source_path <location>/<scene> \
     --save_path <path to save model> \
