@@ -1,5 +1,3 @@
-thirdparty/*
-!thirdparty/.placeholder
 
 test/
 temp/
