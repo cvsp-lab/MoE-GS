@@ -26,8 +26,22 @@
   <br>
   <b>Summary</b>: Unified <b>Mixture-of-Experts</b> framework for dynamic Gaussian Splatting with a
             <b>volume-aware pixel router</b> for adaptive expert blending.
+  <br><br>
+  <b>MoE-GS Series</b>: MoE-GS is part of
+  <a href="https://github.com/cvsp-lab/MoE-GS-studio"><b>MoE-GS Studio</b></a>,
+  a research series on Mixture-of-Experts architectures for Dynamic Gaussian Splatting.
 </div>
 
+
+## 🚧 TODO List
+
+- [x] Main Code Release
+- [ ] Expert Training Scripts (Coming Soon)
+- [ ] Gate-aware Gaussian Pruning Code (Coming Soon)
+- [ ] Single-pass Multi-expert Rendering Code (Coming Soon)
+- [ ] MoE-guided Distillation Code (Coming Soon)
+
+<br><br>
 
 ## Contents
 
@@ -35,7 +49,8 @@
 2. [Preprocess Datasets](#-Preprocess-Datasets)
 3. [Stage 1: Expert Training](#-Stage-1)
 4. [Stage 2: Router Training](#-Stage-2)
-5. [BibTeX](#bibtex)
+5. [Related Projects](#related-projects)
+6. [BibTeX](#bibtex)
 
 <br><br>
 
@@ -174,6 +189,13 @@ python render_E3_tech.py --skip_train \
 **Options:**
 - `--y_offset` Vertical offset for viewpoint shifting (used for N3V).  
 - `--focal_mm` Camera focal length in millimeters (used for Technicolor).
+
+<br>
+
+## Related Projects
+
+- [MoE-GS Studio](https://github.com/cvsp-lab/MoE-GS-studio): Overview of our MoE-based 4DGS research series.
+- [MoDE](https://github.com/cvsp-lab/MoDE): Mixture of Deformation Experts for Dynamic Gaussian Splatting.
 
 <br>
 
